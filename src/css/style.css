@@ -1,0 +1,477 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.navbar {
+  @apply sticky top-0 z-20 py-3 px-6 bg-slate-800/70 backdrop-blur-md shadow-md shadow-slate-950/30;
+}
+
+.navbar-container {
+  @apply max-w-6xl mx-auto flex items-center justify-between gap-6 text-slate-50;
+}
+
+.navbar__brand {
+  @apply text-3xl font-bold;
+}
+
+.navbar__links {
+  @apply flex flex-wrap justify-end gap-6 text-lg font-semibold;
+}
+
+.navbar__link {
+  @apply hover:text-cyan-500 duration-200;
+}
+
+.title-block {
+  @apply flex flex-col space-y-3 text-center;
+}
+
+.title-block__title {
+  @apply text-7xl font-bold;
+}
+
+.title-block__subtitle {
+  @apply text-4xl opacity-70;
+}
+
+.hero {
+  @apply w-full flex items-center justify-end p-12 py-30;
+  min-height: 35rem;
+  background:
+    linear-gradient(to bottom, transparent 70%, black 100%),
+    url("../img/body-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 16%;
+}
+
+.hero-container {
+  @apply w-1/2 max-w-2xl flex flex-col items-center space-y-10 text-slate-50;
+}
+
+.hero .title-block__title {
+  text-shadow:
+    5px 5px 10px rgb(184, 1, 184),
+    -5px -5px 10px rgb(0, 168, 168);
+}
+
+.hero__cta {
+  @apply flex flex-wrap justify-center gap-4;
+}
+
+.btn {
+  @apply py-2 px-4 border-2 border-transparent rounded-full font-bold transition-all duration-200;
+}
+
+.btn-solid {
+  @apply border-cyan-500 bg-cyan-500 text-slate-800 hover:border-fuchsia-700 hover:bg-fuchsia-700 hover:text-cyan-200;
+}
+
+.btn-ghost {
+  @apply border-cyan-500/50 bg-slate-950/40 text-cyan-200 hover:border-cyan-300 hover:bg-cyan-500 hover:text-slate-950;
+}
+
+.btn-danger {
+  @apply border-fuchsia-500/50 bg-slate-950/40 text-fuchsia-200 hover:border-fuchsia-500 hover:bg-fuchsia-700 hover:text-cyan-100;
+}
+
+.hero .btn-solid {
+  @apply shadow-lg shadow-fuchsia-500/50 hover:shadow-xl hover:shadow-cyan-500/70 hover:-translate-y-1;
+}
+
+.form {
+  @apply mx-auto grid items-end gap-5 px-6 py-5 bg-slate-800/90 rounded-xl border border-cyan-500/15 shadow-lg shadow-slate-950/30;
+  width: min(calc(100% - 2rem), 72rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+}
+
+.form__input-group {
+  @apply flex min-w-0 flex-col gap-2;
+}
+
+.form__label {
+  @apply text-lg font-semibold text-slate-50;
+}
+
+.form__input {
+  @apply w-full py-3 px-4 bg-slate-50 text-slate-900 rounded-lg outline-none border-2 border-transparent focus:border-cyan-500;
+}
+
+.form__cta {
+  @apply flex;
+}
+
+.form .btn {
+  @apply h-12 whitespace-nowrap shadow-lg shadow-fuchsia-500/30 hover:shadow-xl hover:shadow-cyan-500/50;
+}
+
+.form.add-workout {
+  @apply mt-14;
+}
+
+.workouts-section {
+  @apply flex flex-col px-6 mt-20 mb-20;
+}
+
+.workouts-section .title-block__title {
+  @apply text-4xl text-slate-50;
+  text-shadow:
+    5px 5px 10px rgb(184, 1, 184),
+    -5px -5px 10px rgb(0, 168, 168);
+}
+
+.workouts-container {
+  @apply w-full max-w-5xl mx-auto mt-12;
+}
+
+.workouts-empty {
+  @apply mx-auto max-w-xl p-8 text-center bg-slate-800/70 border border-cyan-500/20 rounded-xl shadow-lg shadow-slate-950/30;
+}
+
+.workouts-empty__title {
+  @apply text-2xl font-bold text-slate-50;
+}
+
+.workouts-empty__text {
+  @apply mt-3 text-lg text-slate-50/70;
+}
+
+.workout-list-wrapper {
+  @apply w-full;
+}
+
+.workout-list__summary {
+  @apply mb-6 grid grid-cols-3 gap-4;
+}
+
+.workout-stat {
+  @apply p-4 bg-slate-900/80 border border-cyan-500/20 rounded-lg shadow-md shadow-slate-950/30;
+}
+
+.workout-stat__value {
+  @apply block text-3xl font-bold text-cyan-300;
+}
+
+.workout-stat__label {
+  @apply mt-1 block text-sm font-semibold uppercase text-slate-50/60;
+}
+
+.workout-list {
+  @apply flex flex-col max-h-150 gap-4 overflow-y-auto pr-2;
+  scrollbar-gutter: stable;
+}
+
+.workout-list::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.workout-list::-webkit-scrollbar-track {
+  background-color: rgb(15 23 42 / 0.45);
+  border-radius: 9999px;
+}
+
+.workout-list::-webkit-scrollbar-thumb {
+  background-color: rgb(34 211 238 / 0.5);
+  border-radius: 9999px;
+}
+
+.workout {
+  @apply grid items-center gap-5 p-5 text-slate-50 bg-slate-800/85 border border-slate-700/80 rounded-lg shadow-lg shadow-slate-950/30 transition-all duration-200 hover:border-cyan-500/50 hover:bg-slate-800;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.8fr) auto;
+}
+
+.workout__main {
+  @apply min-w-0;
+}
+
+.workout__eyebrow {
+  @apply text-xs font-bold uppercase text-cyan-300;
+}
+
+.workout__name {
+  @apply mt-1 truncate text-2xl font-bold;
+}
+
+.workout__details {
+  @apply grid grid-cols-3 gap-3;
+}
+
+.workout__metric {
+  @apply min-w-0 rounded-lg border border-slate-700/70 bg-slate-950/35 p-3;
+}
+
+.workout__metric-label {
+  @apply block text-xs font-bold uppercase text-slate-50/50;
+}
+
+.workout__metric-value {
+  @apply mt-1 block truncate text-lg font-semibold text-slate-50;
+}
+
+.workout-btns {
+  @apply flex justify-end gap-3;
+}
+
+.workout .btn {
+  @apply h-10 px-4 py-0 text-sm font-semibold;
+}
+
+.contact-section {
+  @apply px-6 py-20 bg-black text-slate-50;
+}
+
+.contact-section .title-block__title {
+  @apply text-4xl text-slate-50;
+  text-shadow:
+    5px 5px 10px rgb(184, 1, 184),
+    -5px -5px 10px rgb(0, 168, 168);
+}
+
+.contact-section .title-block__subtitle {
+  @apply text-xl text-slate-50/70;
+}
+
+.contact-section__layout {
+  @apply max-w-6xl mx-auto mt-12 grid grid-cols-2 gap-10 items-stretch;
+}
+
+.contact-section__copy {
+  @apply flex flex-col justify-center p-8 bg-slate-800/70 rounded-xl border border-cyan-500/20 shadow-lg shadow-slate-950/30;
+}
+
+.contact-section__eyebrow {
+  @apply text-sm font-bold uppercase text-cyan-300;
+}
+
+.contact-section__heading {
+  @apply mt-4 text-4xl font-bold;
+}
+
+.contact-section__text {
+  @apply mt-5 text-lg leading-8 text-slate-50/70;
+}
+
+.contact-form {
+  @apply flex flex-col gap-5 p-8 bg-slate-800 rounded-xl border border-fuchsia-500/20 shadow-lg shadow-fuchsia-950/30;
+}
+
+.contact-form__group {
+  @apply flex flex-col gap-2;
+}
+
+.contact-form__label {
+  @apply text-lg font-semibold text-slate-50;
+}
+
+.contact-form__field {
+  @apply w-full py-3 px-4 bg-slate-50 text-slate-900 rounded-lg outline-none border-2 border-transparent focus:border-cyan-500;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .btn {
+  @apply self-start shadow-lg shadow-fuchsia-500/40 hover:shadow-xl hover:shadow-cyan-500/60 hover:-translate-y-1;
+}
+
+.contact-form__status {
+  @apply min-h-6 text-sm font-semibold text-cyan-300;
+}
+
+.footer {
+  @apply px-6 py-10 bg-slate-950 text-slate-50 border-t border-cyan-500/20;
+}
+
+.footer-container {
+  @apply max-w-6xl mx-auto grid grid-cols-3 gap-8 items-center;
+}
+
+.footer__brand {
+  @apply text-3xl font-bold;
+  text-shadow:
+    3px 3px 8px rgb(184, 1, 184),
+    -3px -3px 8px rgb(0, 168, 168);
+}
+
+.footer__text {
+  @apply mt-2 max-w-sm text-slate-50/60;
+}
+
+.footer__links {
+  @apply flex justify-center gap-6 text-lg font-semibold;
+}
+
+.footer__link {
+  @apply hover:text-cyan-500 duration-200;
+}
+
+.footer__meta {
+  @apply text-right text-slate-50/60;
+}
+
+@media (max-width: 900px) {
+  .navbar-container {
+    @apply flex-col justify-center text-center;
+  }
+
+  .hero {
+    @apply justify-center px-6 py-20;
+    min-height: 31rem;
+    background-position: center center;
+  }
+
+  .hero-container {
+    @apply w-full;
+  }
+
+  .title-block__title {
+    @apply text-5xl;
+  }
+
+  .title-block__subtitle {
+    @apply text-2xl;
+  }
+
+  .form {
+    @apply px-4;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form__cta {
+    grid-column: 1 / -1;
+  }
+
+  .form .btn,
+  .contact-form .btn {
+    @apply w-full;
+  }
+
+  .workout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workout-btns {
+    @apply justify-start;
+  }
+
+  .contact-section__layout,
+  .footer-container {
+    @apply grid-cols-1 gap-6;
+  }
+
+  .contact-section__copy,
+  .contact-form {
+    @apply p-6;
+  }
+
+  .contact-section__heading {
+    @apply text-3xl;
+  }
+
+  .contact-form .btn {
+    @apply self-stretch;
+  }
+
+  .footer__brand-group {
+    @apply text-center;
+  }
+
+  .footer__text {
+    @apply mx-auto;
+  }
+
+  .footer__links,
+  .footer__meta {
+    @apply justify-center text-center;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    @apply px-4;
+  }
+
+  .navbar__brand {
+    @apply text-2xl;
+  }
+
+  .navbar__links {
+    @apply gap-4 text-base;
+  }
+
+  .hero {
+    @apply px-4 py-16;
+    min-height: 29rem;
+  }
+
+  .title-block__title {
+    @apply text-4xl;
+  }
+
+  .title-block__subtitle {
+    @apply text-xl;
+  }
+
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workouts-section,
+  .contact-section {
+    @apply px-4 py-16;
+  }
+
+  .workouts-section {
+    @apply mt-14 mb-14;
+  }
+
+  .workout-list__summary,
+  .workout__details {
+    @apply grid-cols-1;
+  }
+
+  .workout {
+    @apply p-4;
+  }
+
+  .workout__name {
+    @apply text-xl;
+  }
+
+  .workout-btns {
+    @apply grid grid-cols-2;
+  }
+
+  .workout .btn {
+    @apply w-full px-3;
+  }
+
+  .contact-section__heading {
+    @apply text-2xl;
+  }
+
+  .contact-section__text {
+    @apply text-base leading-7;
+  }
+
+  .footer {
+    @apply px-4;
+  }
+}
