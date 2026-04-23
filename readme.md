@@ -1,3 +1,7 @@
+![Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify)
+![Status](https://img.shields.io/badge/status-live-success)
+![Tech](https://img.shields.io/badge/tech-vanilla%20js-yellow)
+
 # 💪 GymTrack
 
 Track your workouts, stay consistent, and build momentum.
@@ -77,7 +81,7 @@ src/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/gymtrack.git
+git clone https://github.com/Bennyam/gymtrack.git
 cd gymtrack
 ```
 
@@ -127,7 +131,21 @@ The project is deployed using **Netlify**:
 
 ## 📸 Screenshots
 
-_Add screenshots of your app here_
+### 🖥️ Desktop
+
+![Desktop View](./screenshots/desktop.png)
+
+### 📱 Mobile
+
+![Mobile View](./screenshots/mobile.png)
+
+### ➕ Add Workout
+
+![Add Workout](./screenshots/add-workout.png)
+
+### 📊 Dashboard / Stats
+
+![Dashboard](./screenshots/dashboard.png)
 
 ---
 
